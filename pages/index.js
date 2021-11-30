@@ -29,6 +29,25 @@ export default function Home() {
 
   async function handleOnSubmit(event) {
     event.preventDefault();
+    const form = event.currentTarget;
+    const fileInput = Array.from(form.elements).find(({name}) => name === "file");
+
+    const formData = new FormData();
+
+    for( const file of fileInput.files){
+      formData.append('file', file);
+    }
+
+    formData.append('upload_preset', 'my-uploads');
+
+    const data = await fetch("https://api.cloudinary.com/v1_1/dtram9qiy/image/upload", {
+      method: 'POST',
+      body: formData
+    }).then(res => res.json());
+
+    setImageSrc(data.secure_url)
+    setUploadData(data)
+    console.log(data)
   }
 
   return (
@@ -53,7 +72,7 @@ export default function Home() {
             <input type="file" name="file" />
           </p>
           
-          <img src={imageSrc} />
+          <img src={imageSrc} alt="" />
           
           {imageSrc && !uploadData && (
             <p>
@@ -66,10 +85,6 @@ export default function Home() {
           )}
         </form>
       </main>
-
-      <footer className={styles.footer}>
-        <p>Find the tutorial on <a href="https://spacejelly.dev/">spacejelly.dev</a>!</p>
-      </footer>
     </div>
   )
 }
