@@ -22,11 +22,6 @@ export default function Home() {
     reader.readAsDataURL(changeEvent.target.files[0]);
   }
 
-  /**
-   * handleOnSubmit
-   * @description Triggers when the main form is submitted
-   */
-
   async function handleOnSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -72,7 +67,7 @@ export default function Home() {
             <input type="file" name="file" />
           </p>
           
-          <img src={imageSrc} alt="" />
+          <img src={imageSrc} alt="uploaded-image" />
           
           {imageSrc && !uploadData && (
             <p>
