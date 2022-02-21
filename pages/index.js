@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
-import Image from 'next/image'
 
 export default function Home() {
   const [imageSrc, setImageSrc] = useState();
@@ -67,8 +66,8 @@ export default function Home() {
           <p>
             <input type="file" name="file" />
           </p>
-          <Image src={imageSrc} layout="fill" objectFit='cover' alt="btm" />
-          {/* <img src={imageSrc} alt="uploaded-image" /> */}
+          
+          <img src={imageSrc} alt="uploaded-image" />
           
           {imageSrc && !uploadData && (
             <p>
