@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
+import Image from 'next/image'
 
 export default function Home() {
   const [imageSrc, setImageSrc] = useState();
@@ -35,7 +36,7 @@ export default function Home() {
 
     formData.append('upload_preset', 'my-uploads');
 
-    const data = await fetch("https://api.cloudinary.com/v1_1/dtram9qiy/image/upload", {
+    const data = await fetch("https://api.cloudinary.com/v1_1/btmcompliance/image/upload", {
       method: 'POST',
       body: formData
     }).then(res => res.json());
@@ -66,8 +67,8 @@ export default function Home() {
           <p>
             <input type="file" name="file" />
           </p>
-          
-          <img src={imageSrc} alt="uploaded-image" />
+          <Image src={imageSrc} layout="fill" objectFit='cover' alt="btm" />
+          {/* <img src={imageSrc} alt="uploaded-image" /> */}
           
           {imageSrc && !uploadData && (
             <p>
