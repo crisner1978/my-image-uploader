@@ -18,9 +18,10 @@ export default function Home() {
       setImageSrc(onLoadEvent.target.result);
       setUploadData(undefined);
     }
-
+  
     reader.readAsDataURL(changeEvent.target.files[0]);
   }
+  console.log(imageSrc)
 
   async function handleOnSubmit(event) {
     event.preventDefault();
@@ -33,9 +34,9 @@ export default function Home() {
       formData.append('file', file);
     }
 
-    formData.append('upload_preset', 'my-uploads');
+    formData.append('upload_preset', 'my-upload');
 
-    const data = await fetch("https://api.cloudinary.com/v1_1/btmcompliance/image/upload", {
+    const data = await fetch("https://api.cloudinary.com/v1_1/dtram9qiy/image/upload", {
       method: 'POST',
       body: formData
     }).then(res => res.json());
